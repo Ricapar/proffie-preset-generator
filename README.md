@@ -39,3 +39,14 @@ over to your Proffie saber.
 
 * [ProffieOS](https://github.com/profezzorn/ProffieOS)
 * [ProffieOS Style Editor](https://fredrik.hubbe.net/lightsaber/style_editor.html) ([GitHub](https://github.com/profezzorn/ProffieOS-StyleEditor))
+
+
+# Inspiration
+
+I work in AWS on a daily basis, and building thigs with CloudFormation a large part of that.
+CloudFormation gives you a streamlined way of describing your infrastructure as code, and
+to achieve that AWS maintains a pretty robust list of resource specifications for everything
+that's "valid" within a CloudFormation template. A lot of what what's built here was designed
+with a similar mindset - produce a large "spec" file that contains all of the valid functions,
+their arguments, what's required and what's not, etc. and use that to build a template language
+that can be used to perform certain tasks - in this case, describe ProffieOS's blade styles.
