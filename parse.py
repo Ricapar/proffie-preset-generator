@@ -1,17 +1,12 @@
 #!/usr/bin/env python
-import os
 import sys
-import json
 import ruamel.yaml
-import argparse
-
 import proffieyaml
 
 def main():
 
-
 	# Load file for testing
-	with open("input.txt", "r") as proffie_style_fh:
+	with open("input.txt", "r", encoding="utf-8") as proffie_style_fh:
 		proffie_style = proffie_style_fh.read()
 
 	# Test parsing
@@ -25,8 +20,6 @@ def main():
 
 	print("---")
 	yaml.dump(data, sys.stdout)
-
-	return
 
 if __name__ == '__main__':
 	main()
