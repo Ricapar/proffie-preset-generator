@@ -11,6 +11,7 @@ Functions:
       B:
         Required: true
         Position: 2
+
   RotateColorsX:
     Arguments:
       Rotation:
@@ -23,25 +24,31 @@ Functions:
   BladeAngleX:
     Arguments:
       Min:
-        Required: true
+        Required: false
+        Default: 0
         Position: 0
       Max:
-        Required: true
+        Required: false
+        Default: 32768
         Position: 1
 
   BlastF:
     Arguments:
       FadeoutMs:
-        Required: true
+        Required: false
+        Default: 200
         Position: 0
       WaveSize:
-        Required: true
+        Required: false
+        Default: 100
         Position: 1
       WaveMs:
-        Required: true
+        Required: false
+        Default: 400
         Position: 2
       Effect:
-        Required: true
+        Required: false
+        Default: EFFECT_BLAST
         Position: 3
 
 # BlastF<FADEOUT_MS, WAVE_SIZE, WAVE_MS, EFFECT>
