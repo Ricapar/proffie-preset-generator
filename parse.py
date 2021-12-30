@@ -1,10 +1,11 @@
 #!/usr/bin/env python
 import os
+import sys
 import json
-import yaml
+import ruamel.yaml
 import argparse
 
-from proffie_parser import ProffieParser
+import proffieyaml
 
 def main():
 
@@ -14,21 +15,16 @@ def main():
 		proffie_style = proffie_style_fh.read()
 
 	# Test parsing
-	parser = ProffieParser()
+	parser = proffieyaml.BladeStyleParser()
 	parser.parse(style=proffie_style)
-
 
 	data = parser.get_data()
 
+	yaml = ruamel.yaml.YAML()
+	yaml.indent(sequence=4, offset=2)
 
-	print(json.dumps(data, indent=2))
-
-
-	print("=" * 100)
-
-	cleaned_data = parser.cleanup_types()
-	print(yaml.dump(cleaned_data))
-
+	print("---")
+	yaml.dump(data, sys.stdout)
 
 	return
 

@@ -1,0 +1,126 @@
+---
+Functions:
+  Rgb:
+    Arguments:
+      R:
+        Required: true
+        Position: 0
+      G:
+        Required: true
+        Position: 1
+      B:
+        Required: true
+        Position: 2
+  RotateColorsX:
+    Arguments:
+      Rotation:
+        Required: true
+        Position: 0
+      Color:
+        Required: true
+        Position: 1
+
+  BladeAngleX:
+    Arguments:
+      Min:
+        Required: true
+        Position: 0
+      Max:
+        Required: true
+        Position: 1
+
+  BlastF:
+    Arguments:
+      FadeoutMs:
+        Required: true
+        Position: 0
+      WaveSize:
+        Required: true
+        Position: 1
+      WaveMs:
+        Required: true
+        Position: 2
+      Effect:
+        Required: true
+        Position: 3
+
+# BlastF<FADEOUT_MS, WAVE_SIZE, WAVE_MS, EFFECT>
+# BlastFadeoutF<FADEOUT_MS, EFFECT>
+# OriginalBlastF<EFFECT>
+# BlinkingF<A, B, BLINK_MILLIS_FUNC, BLINK_PROMILLE_FUNC>
+# BrownNoiseF<GRADE>
+# SlowNoise<SPEED>
+# Bump<BUMP_POSITION, BUMP_WIDTH_FRACTION>
+# ChangeSlowly<F, SPEED>
+# CircularSectionF<POSITION, FRACTION>
+# Ifon<A, B>
+# Int<N>
+# IsLessThan<F, V>
+# LayerFunctions<F1, F2, ...>
+# MarbleF<OFFSET, FRICTION, ACCELERATION, GRAVITY>
+# Mult<F, V>
+# Percentage<F, V>
+# OnsparkF<MILLIS>
+# RandomBlinkF<MILLIHZ>
+# Scale<F, A, B>
+# Sin<RPM, LOW, HIGH>
+# SliceF<DENSITY_FUNCTION>
+# SmoothStep<POS, WIDTH>
+# SparkleF<SPARK_CHANCE_PROMILLE, SPARK_INTENSITY>
+# StrobeF<STROBE_FREQUENCY, STROBE_MILLIS>
+# SwingSpeed<MAX>
+# Trigger<EFFECT, FADE_IN_MILLIS, SUSTAIN_MILLIS, FADE_OUT_MILLIS, DELAY>
+# TwistAngleX<OFFSET, N>
+# AlphaL<COLOR, ALPHA>
+# AudioFlicker<A, B>
+# Blast<BASE, BLAST, FADEOUT_MS, WAVE_SIZE, WAVE_MS>
+# BlastFadeout<BASE, BLAST, FADEOUT_MS>
+# OriginalBlast<BASE, BLAST>
+# Blinking<A, B, BLINK_MILLIS, BLINK_PROMILLE>
+# BrownNoiseFlicker<A, B, grade>
+# ByteOrderStyle<BYTEORDER, COLOR>
+# SimpleClash<BASE, CLASH_COLOR, CLASH_MILLIS>
+# LocalizedClash<BASE, CLASH_COLOR, CLASH_MILLIS, CLASH_WIDTH_PERCENT=50>
+# LocalizedClashL<CLASH_COLOR, CLASH_MILLIS, CLASH_WIDTH_PERCENT=50>
+# ColorChange<TRANSITION, COLOR1, COLOR2, ...>
+# ColorCycle<COLOR, PERCENT, RPM>
+# Cylon<COLOR, PERCENT, RPM>
+# Gradient<A, B>
+# HumpFlicker<A, B, HUMP_WIDTH>
+# IgnitionDelay<DELAY_MILLIS, BASE>
+# InOutHelper<BASE, OUT_MILLIS, IN_MILLIS>
+# InOutHelper<BASE, OUT_MILLIS, IN_MILLIS>
+# Layers<BASE, LAYER1, LAYER2, ...>
+# LengthFinder<BASE, LIGHTUP>
+# Lockup<BASE, LOCKUP, DRAG_COLOR, LOCKUP_SHAPE, DRAG_SHAPE>
+# LockupTr<BASE, COLOR, BeginTr, EndTr, LOCKUP_TYPE>
+# Mix<F, A, B>
+# Mix<F, A, B, C, ....>
+# OnSpark<BASE, SPARK_COLOR, MILLIS>
+# Pulsing<A, B, PULSE_MILLIS>
+# RandomFlicker<A, B>
+# RandomPerLEDFlicker<A, B>
+# RetractionDelay<DELAY_MILLIS, BASE>
+# Rgb<R, G, B>
+# Rgb16<R, G, B>
+# RgbArg<ARG, DEFAULT_COLOR>
+# RotateColorsX<ROTATION, COLOR>
+# Sparkle<BASE, SPARKLE_COLOR, SPARK_CHANCE_PROMILLE, SPARK_INTENSITY>
+# Stripes<WIDTH, SPEED, COLOR1, COLOR2, ... >
+# Strobe<BASE, STROBE_COLOR, STROBE_FREQUENCY, STROBE_MILLIS>
+# StylePtr<BLADE>
+# TransitionEffect<COLOR, EFFECT_COLOR, TRANSITION1, TRANSITION2, EFFECT>
+# TransitionLoop<COLOR, TRANSITION>
+# TrFadeX<MILLIS_FUNCTION, N>
+# TrColorCycle<MILLIS, START_RPM, END_RPM>
+# TrConcat<TRANSITION, INTERMEDIATE, TRANSITION, ...>
+# TrDelayX<MILLIS_FUNCTION>
+# TrFadeX<MILLIS_FUNCTION>
+# TrSmoothFadeX<MILLIS_FUNCTION>
+# TrJoin<TR1, TR2, ...>
+# TrJoinR<TR1, TR2, ...>
+# TrRandom<TR1, TR2, ...>
+# TrWipeX<MILLIS_FUNCTION>
+# TrWipeInX<MILLIS_FUNCTION>
+# TrWipeSparkTip<SPARK_COLOR, MILLIS, SIZE>
+# TrWipeInSparkTip<SPARK_COLOR, MILLIS, SIZE>

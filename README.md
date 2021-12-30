@@ -21,6 +21,20 @@ and it'll "compile" them into a `Preset blade[] = { ... }` section that
 can be easily dropped into the Arduino project directory and then flashed
 over to your Proffie saber.
 
+
+# Usage
+
+## Requirements
+
+1. Python (I've only tested with python3.x)
+1. `pip install -r ./requirements.txt`
+
+## Run
+
+1. Find a blade style you want to use and place it in `input.txt`. Include
+   everything within `StylePtr< ... >` but not the `StylePtr` piece itself.
+1. Run `./parse.py`
+
 # References
 
 * [ProffieOS](https://github.com/profezzorn/ProffieOS)
