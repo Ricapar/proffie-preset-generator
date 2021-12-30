@@ -2,6 +2,8 @@
 Copyright 2021 Rich Acosta <rich@ricapar.net>
 Part of proffieyaml, a yaml-to-cpp parser/generator for ProffieOS's saber styles
 """
+import logging
+import json
 import importlib.resources as pkg_resources
 import ruamel.yaml
 
@@ -12,6 +14,7 @@ class BladeStyleFunction:
 
 	def __init__(self):
 		if not BladeStyleFunction._spec:
+			logging.debug("{__class__}: Loading FunctionSpecification.yaml")
 			spec_fh = pkg_resources.read_text(
 				__package__,
 				"FunctionSpecification.yaml"
@@ -20,26 +23,16 @@ class BladeStyleFunction:
 			BladeStyleFunction._spec = spec
 
 	def get_function(self, function):
+		"""Looks up a function in the function spec list. If found,
+		returns a dictionary from the corresponding entry in the function
+		spec. If not found, returns a None-type.
+		"""
 		if function in BladeStyleFunction._spec["Functions"]:
 			return BladeStyleFunction._spec["Functions"][function]
 		else:
 			return None
 
-	@staticmethod
-	def default_spec(function, args, callback):
-		output = {}
-		output[function] = []
-		for index, value in enumerate(args):
-			output[function].append(callback(args[index], callback))
-
-		# If we have a single-item list, then return it as-is
-		if isinstance(output[function], list) and len(output[function]) == 1:
-			output[function] = output[function][0]
-
-		return output
-
 	def parsed_to_yaml(self, function, args, callback):
-
 		function_spec = self.get_function(function)
 
 		# if a spec isn't found in our function specification file,
@@ -47,12 +40,11 @@ class BladeStyleFunction:
 		# generic enough data structure that'll still translate back
 		# to what we want to output
 		if not function_spec:
-			print(f"did not find a spec for {function}")
+			logging.debug(f"{__class__}: did not find a spec " \
+						   "for {function}, using default_spec")
 			return BladeStyleFunction.default_spec(function, args, callback)
 
-
-		print(f"FOUND spec for {function}")
-
+		logging.debug(f"{__class__}: Found spec for {function}")
 
 		# If we did find an entry in the specification file, then we can
 		# iterate through the known arguments and give them names within
@@ -64,10 +56,28 @@ class BladeStyleFunction:
 			except IndexError:
 				if arg_spec["Required"]:
 					missing_position = arg_spec["Position"]
-					raise Exception(f"Function {function}<> is missing required argument at position {missing_position}")
-
+					error_message = f"Function {function}<> is missing required argument" \
+									"at position {missing_position}"
+					logging.error("{__class__}: {error_message}")
+					raise Exception(error_message)
+			except Exception as exp:
+				logging.error("unplanned issue, probably a broken spec file?")
+				logging.error(json.dumps(function_spec))
+				raise exp
 
 		output = {}
 		output[function] = output_args
+		return output
+
+	@staticmethod
+	def default_spec(function, args, callback):
+		output = {}
+		output[function] = []
+		for index, value in enumerate(args):
+			output[function].append(callback(args[index], callback))
+
+		# If we have a single-item list, then return it as-is
+		if isinstance(output[function], list) and len(output[function]) == 1:
+			output[function] = output[function][0]
 
 		return output

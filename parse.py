@@ -5,6 +5,7 @@ Part of proffieyaml, a yaml-to-cpp parser/generator for ProffieOS's saber styles
 """
 
 import sys
+import argparse
 import ruamel.yaml
 import proffieyaml
 
