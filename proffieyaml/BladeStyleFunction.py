@@ -1,13 +1,9 @@
-#!/usr/bin/env python
+"""
+Copyright 2021 Rich Acosta <rich@ricapar.net>
+Part of proffieyaml, a yaml-to-cpp parser/generator for ProffieOS's saber styles
+"""
+import importlib.resources as pkg_resources
 import ruamel.yaml
-import json
-
-try:
-    import importlib.resources as pkg_resources
-except ImportError:
-    # Try backported to PY<37 `importlib_resources`.
-    import importlib_resources as pkg_resources
-
 
 
 class BladeStyleFunction:
@@ -21,9 +17,6 @@ class BladeStyleFunction:
 				"FunctionSpecification.yaml"
 			)
 			spec = ruamel.yaml.load(spec_fh, Loader=ruamel.yaml.Loader)
-
-			print(json.dumps(spec, indent=2))
-
 			BladeStyleFunction._spec = spec
 
 	def get_function(self, function):

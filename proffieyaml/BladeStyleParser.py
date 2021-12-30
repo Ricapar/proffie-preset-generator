@@ -1,4 +1,7 @@
-#!/usr/bin/env python
+"""
+Copyright 2021 Rich Acosta <rich@ricapar.net>
+Part of proffieyaml, a yaml-to-cpp parser/generator for ProffieOS's saber styles
+"""
 import json
 from . import BladeStyleFunction
 
@@ -59,7 +62,7 @@ class BladeStyleParser:
 				if isinstance(v, dict) or isinstance(v, list):
 					callback(data=v, callback=callback)
 
-		return output		
+		return output
 
 	def parse(self, style):
 
