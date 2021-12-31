@@ -29,11 +29,17 @@ over to your Proffie saber.
 1. Python (I've only tested with python3.x)
 1. `pip install -r ./requirements.txt`
 
-## Run
+## Usage
 
-1. Find a blade style you want to use and place it in `input.txt`. Include
-   everything within `StylePtr< ... >` but not the `StylePtr` piece itself.
-1. Run `./parse.py`
+```
+usage: parse.py [-h] --input INPUT --mode {yaml_to_function,function_to_yaml}
+```
+
+* `--input`: The input file. If you're calling `yaml_to_function`, this should be a properly formatted YAML file.
+  If calling `function_to_yaml`, this should be a plaintext file containing the string that would be within a blade's
+  `StylePtr<>` function template within the `blades[]` array in the configuration header file.
+* `--mode`: Either `yaml_to_function` or `function_to_yaml`.
+
 
 # References
 

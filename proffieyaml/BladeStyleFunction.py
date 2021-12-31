@@ -32,7 +32,79 @@ class BladeStyleFunction:
 		else:
 			return None
 
-	def parsed_to_yaml(self, function, args, callback):
+
+	def yaml_to_function(self, data):
+
+		output = ""
+
+		# if we're not handling a list or a dictionary, return the basic type as a string
+		if not isinstance(data, dict) and not isinstance(data, list):
+			return str(data)
+
+		if isinstance(data, dict):
+			output_list = []
+			for function, args in data.items():
+				logging.debug(f"{__name__}: function={function}, args={args}")
+
+				# If we have a defined function, then we have to deconstruct
+				# the underlying data structure to remove the named arguments
+				# and convert them back into positional ones
+
+				function_spec = self.get_function(function)
+
+				if not function_spec:
+					logging.debug(f"{__name__}: Did NOT find function spec for {function}")
+
+					output_list_str = f"{function}<"
+					output_list_str += self.yaml_to_function(args)
+					output_list_str += ">"
+
+					output_list.append(output_list_str)
+
+
+				if function_spec:
+					logging.debug(f"{__name__}: Found function spec for {function}")
+					logging.debug(function_spec)
+
+					# Loop through all of the expected function arguments
+					function_output_args = []
+					for arg_name, arg_properties in function_spec["Arguments"].items():
+						logging.debug(f"   arg_name={arg_name}, arg_properties={arg_properties}")
+						logging.debug(f"   args={args}")
+
+						try:
+							function_output_args.insert(
+								arg_properties["Position"],
+								self.yaml_to_function(args[arg_name])
+							)
+						except KeyError as exp:
+							if arg_properties["Required"]:
+								raise Exception(f"Required property '{arg_name}' is missing from function {function}<>")
+
+						except Exception as exp:
+							raise exp
+
+
+					output_list_str = f"{function}<"
+					output_list_str += ",".join(function_output_args)
+					output_list_str += ">"
+
+					output_list.append(output_list_str)
+
+			output = ",".join(output_list)
+
+		if isinstance(data, list):
+			output_list = []
+			for args in data:
+				logging.debug(f"{__name__}: args={args}")
+				output_list.append(self.yaml_to_function(args))
+
+			output = ",".join(output_list)
+
+		return output
+
+
+	def function_to_yaml(self, function, args, callback):
 		function_spec = self.get_function(function)
 
 		# if a spec isn't found in our function specification file,

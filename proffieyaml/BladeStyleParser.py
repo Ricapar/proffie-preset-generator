@@ -55,7 +55,7 @@ class BladeStyleParser:
 		if isinstance(data, dict):
 			for k, v in data.items():
 				bsf = BladeStyleFunction.BladeStyleFunction()
-				return bsf.parsed_to_yaml(function=k, args=v, callback=callback)
+				return bsf.function_to_yaml(function=k, args=v, callback=callback)
 
 		if isinstance(data, list):
 			for v in data:
