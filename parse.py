@@ -54,6 +54,8 @@ def main():
 		print(output)
 
 
+
+
 	if cli_args.mode == "function_to_yaml":
 		parser = proffieyaml.BladeStyleParser()
 		parser.parse(style=data)
